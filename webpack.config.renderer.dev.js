@@ -58,7 +58,6 @@ export default merge.smart(baseConfig, {
         use: {
           loader: 'babel-loader',
           options: {
-            cacheDirectory: true,
             plugins: [
               // Here, we include babel plugins that are only required for the
               // renderer process. The 'transform-*' plugins must be included

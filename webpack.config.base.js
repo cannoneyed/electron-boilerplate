@@ -7,6 +7,7 @@ import webpack from 'webpack';
 import { dependencies as externals } from './app/package.json';
 
 export default {
+  cache: false,
   externals: Object.keys(externals || {}),
 
   module: {
@@ -15,9 +16,6 @@ export default {
       exclude: /node_modules/,
       use: {
         loader: 'babel-loader',
-        options: {
-          cacheDirectory: true
-        }
       }
     }]
   },

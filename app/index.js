@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Router, hashHistory } from 'react-router'
+const ReactRouter = require('react-router')
 import { useStrict } from 'mobx'
 import { Provider } from 'mobx-react'
 import { RouterStore, syncHistoryWithStore } from 'mobx-react-router'
@@ -18,12 +18,12 @@ enableLogging({
 })
 useStrict(true)
 
+console.log('🍕', ReactRouter)
+
 const routingStore = new RouterStore()
-const history = syncHistoryWithStore(hashHistory, routingStore)
+const history = syncHistoryWithStore(ReactRouter.hashHistory, routingStore)
 
 render(
-  <Provider routingStore={ routingStore }>
-    <Router history={ history } routes={ routes } />
-  </Provider>,
+  <h1>FUCK YOU</h1>,
   document.getElementById('root'),
 )
