@@ -63,6 +63,7 @@ export default merge.smart(baseConfig, {
               // Here, we include babel plugins that are only required for the
               // renderer process. The 'transform-*' plugins must be included
               // before react-hot-loader/babel
+              'transform-decorators-legacy',
               'transform-class-properties',
               'transform-es2015-classes',
               'react-hot-loader/babel'
@@ -101,9 +102,9 @@ export default merge.smart(baseConfig, {
           },
         ]
       },
-      // Add SASS support  - compile all .global.scss files and pipe it to style.css
+      // Add less support  - compile all .global.less files and pipe it to style.css
       {
-        test: /\.global\.scss$/,
+        test: /\.global\.less$/,
         use: [
           {
             loader: 'style-loader'
@@ -115,13 +116,13 @@ export default merge.smart(baseConfig, {
             },
           },
           {
-            loader: 'sass-loader'
+            loader: 'less-loader'
           }
         ]
       },
-      // Add SASS support  - compile all other .scss files and pipe it to style.css
+      // Add less support  - compile all other .less files and pipe it to style.css
       {
-        test: /^((?!\.global).)*\.scss$/,
+        test: /^((?!\.global).)*\.less$/,
         use: [
           {
             loader: 'style-loader'
@@ -136,7 +137,7 @@ export default merge.smart(baseConfig, {
             }
           },
           {
-            loader: 'sass-loader'
+            loader: 'less-loader'
           }
         ]
       },

@@ -7,7 +7,7 @@
     "stage-0",
     "react"
   ],
-  "plugins": ["add-module-exports", "dynamic-import-webpack"],
+  "plugins": ["add-module-exports", "dynamic-import-webpack", "transform-decorators-legacy"],
   "env": {
     "production": {
       "presets": ["react-optimize"],
@@ -15,12 +15,9 @@
     },
     "development": {
       "plugins": [
+        "transform-decorators-legacy",
         "transform-class-properties",
-        "transform-es2015-classes",
-        ["flow-runtime", {
-          "assert": true,
-          "annotate": true
-        }]
+        "transform-es2015-classes"
       ]
     }
   }

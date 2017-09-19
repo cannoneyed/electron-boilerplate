@@ -50,24 +50,24 @@ export default merge.smart(baseConfig, {
           }
         }),
       },
-      // Add SASS support  - compile all .global.scss files and pipe it to style.css
+      // Add less support  - compile all .global.less files and pipe it to style.css
       {
-        test: /\.global\.scss$/,
+        test: /\.global\.less$/,
         use: ExtractTextPlugin.extract({
           use: [
             {
               loader: 'css-loader'
             },
             {
-              loader: 'sass-loader'
+              loader: 'less-loader'
             }
           ],
           fallback: 'style-loader',
         })
       },
-      // Add SASS support  - compile all other .scss files and pipe it to style.css
+      // Add less support  - compile all other .less files and pipe it to style.css
       {
-        test: /^((?!\.global).)*\.scss$/,
+        test: /^((?!\.global).)*\.less$/,
         use: ExtractTextPlugin.extract({
           use: [{
             loader: 'css-loader',
@@ -78,7 +78,7 @@ export default merge.smart(baseConfig, {
             }
           },
           {
-            loader: 'sass-loader'
+            loader: 'less-loader'
           }]
         }),
       },

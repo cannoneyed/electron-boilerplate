@@ -1,27 +1,29 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import Root from './containers/Root';
-import { configureStore, history } from './store/configureStore';
-import './app.global.css';
+import React from 'react'
+import { render } from 'react-dom'
+import { Router, hashHistory } from 'react-router'
+import { useStrict } from 'mobx'
+import { Provider } from 'mobx-react'
+import { RouterStore, syncHistoryWithStore } from 'mobx-react-router'
+import { enableLogging } from 'mobx-logger'
 
-const store = configureStore();
+import routes from './routes'
+
+import './app.global.css'
+
+enableLogging({
+  action: true,
+  reaction: false,
+  transaction: true,
+  compute: true,
+})
+useStrict(true)
+
+const routingStore = new RouterStore()
+const history = syncHistoryWithStore(hashHistory, routingStore)
 
 render(
-  <AppContainer>
-    <Root store={store} history={history} />
-  </AppContainer>,
-  document.getElementById('root')
-);
-
-if (module.hot) {
-  module.hot.accept('./containers/Root', () => {
-    const NextRoot = require('./containers/Root'); // eslint-disable-line global-require
-    render(
-      <AppContainer>
-        <NextRoot store={store} history={history} />
-      </AppContainer>,
-      document.getElementById('root')
-    );
-  });
-}
+  <Provider routingStore={ routingStore }>
+    <Router history={ history } routes={ routes } />
+  </Provider>,
+  document.getElementById('root'),
+)
